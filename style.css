@@ -20,6 +20,10 @@
 
 }
 
+.message {
+  padding: 10px 0;
+}
+
 #messageInput {
   padding: 5px;
 }

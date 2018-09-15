@@ -23,7 +23,8 @@ export class Board extends React.Component<BoardProps, BoardState> {
       messages: current.concat([
         {
           id: String(current.length),
-          body: message
+          body: message,
+          createdAt: new Date()
         }
       ])
     })
@@ -89,7 +90,16 @@ export class BoardBody extends React.Component<BoardBodyProps, BoardBodyState> {
   render() {
     const messages: JSX.Element[] = []
     this.props.messages.forEach(element => {
-      messages.push(<div key={element.id}>{element.body}</div>)
+      messages.push(
+        <div key={element.id} className="message">
+          <div>Date: {element.createdAt.toLocaleString()}</div>
+          <div>
+            Body
+            <br />
+            {element.body}
+          </div>
+        </div>
+      )
     })
 
     return messages
