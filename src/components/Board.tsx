@@ -22,7 +22,7 @@ export class Board extends React.Component<BoardProps, BoardState> {
     this.setState({
       messages: current.concat([
         {
-          id: 'id',
+          id: String(current.length),
           body: message
         }
       ])
