@@ -1,17 +1,32 @@
 import * as React from 'react'
+import { Message } from '../model/Model'
 
 export interface BoardProps {}
 
 export interface BoardState {
   boardTitle: string
+  messages: Message[]
 }
 
 export class Board extends React.Component<BoardProps, BoardState> {
   constructor(props: BoardProps) {
     super(props)
     this.state = {
-      boardTitle: 'board title'
+      boardTitle: 'board title',
+      messages: []
     }
+  }
+
+  handleMessage(message: string) {
+    const current = this.state.messages.slice()
+    this.setState({
+      messages: current.concat([
+        {
+          id: 'id',
+          body: message
+        }
+      ])
+    })
   }
 
   render() {
@@ -21,7 +36,12 @@ export class Board extends React.Component<BoardProps, BoardState> {
           <BoardHeader title={this.state.boardTitle} />
         </div>
         <div className="board-body">
-          <BoardBody />
+          <BoardBody messages={this.state.messages} />
+        </div>
+        <div className="body-message">
+          <BoardMessage
+            onClick={(message: string) => this.handleMessage(message)}
+          />
         </div>
       </div>
     )
@@ -49,30 +69,56 @@ export class BoardHeader extends React.Component<
   }
 }
 
-export interface BoardBodyProps {}
-export interface BoardBodyState {
+export interface BoardBodyProps {
   messages: Message[]
 }
-
-export interface Message {
-  id: string
-  body: string
-}
+export interface BoardBodyState {}
 
 export class BoardBody extends React.Component<BoardBodyProps, BoardBodyState> {
   constructor(props: BoardBodyProps) {
     super(props)
-    this.state = {
-      messages: [{ id: '0', body: 'Hi' }, { id: '1', body: 'Hello' }]
-    }
   }
 
   render() {
     const messages: JSX.Element[] = []
-    this.state.messages.forEach(element => {
+    this.props.messages.forEach(element => {
       messages.push(<div key={element.id}>{element.body}</div>)
     })
 
     return messages
+  }
+}
+
+export interface BoardMessageProps {
+  onClick(message: string): void
+}
+export interface BoardMessageState {}
+
+export class BoardMessage extends React.Component<
+  BoardMessageProps,
+  BoardMessageState
+> {
+  inputId = 'messageInput'
+
+  constructor(props: BoardMessageProps) {
+    super(props)
+  }
+
+  extractMessage(): string {
+    const elm: HTMLInputElement = document.getElementById(
+      this.inputId
+    ) as HTMLInputElement
+    return elm.value
+  }
+
+  render() {
+    return (
+      <div>
+        <input id={this.inputId} type="text" />
+        <button onClick={() => this.props.onClick(this.extractMessage())}>
+          button
+        </button>
+      </div>
+    )
   }
 }
