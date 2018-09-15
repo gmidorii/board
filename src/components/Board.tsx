@@ -72,7 +72,7 @@ export class BoardHeader extends React.Component<
   }
 
   render() {
-    return <div>{this.props.title}</div>
+    return <h3>{this.props.title}</h3>
   }
 }
 
@@ -106,7 +106,9 @@ export class BoardMessage extends React.Component<
   BoardMessageProps,
   BoardMessageState
 > {
-  inputId = 'messageInput'
+  private inputId = 'messageInput'
+  private submitId = 'messageSubmit'
+  private clearId = 'messageClear'
 
   constructor(props: BoardMessageProps) {
     super(props)
@@ -136,10 +138,15 @@ export class BoardMessage extends React.Component<
             this.props.onClick(value)
           }}
         />
-        <button onClick={() => this.props.onClick(this.extractMessage())}>
+        <button
+          id={this.submitId}
+          onClick={() => this.props.onClick(this.extractMessage())}
+        >
           submit
         </button>
-        <button onClick={() => this.props.onClear()}>clear</button>
+        <button id={this.clearId} onClick={() => this.props.onClear()}>
+          clear
+        </button>
       </div>
     )
   }

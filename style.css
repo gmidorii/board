@@ -19,3 +19,41 @@
 .board-message {
 
 }
+
+#messageInput {
+  padding: 5px;
+}
+
+#messageSubmit {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 4px;
+
+  /* hover */
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#messageSubmit:hover {
+  background-color: white;
+  color: #4CAF50;
+}
+
+#messageClear {
+  background-color: #555555;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 4px;
+
+  /* hover */
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+#messageClear:hover {
+  background-color: white;
+  color: #555555;
+}
