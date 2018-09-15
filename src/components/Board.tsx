@@ -51,21 +51,26 @@ export class BoardHeader extends React.Component<
 
 export interface BoardBodyProps {}
 export interface BoardBodyState {
-  messages: string[]
+  messages: Message[]
+}
+
+export interface Message {
+  id: string
+  body: string
 }
 
 export class BoardBody extends React.Component<BoardBodyProps, BoardBodyState> {
   constructor(props: BoardBodyProps) {
     super(props)
     this.state = {
-      messages: ['Hi', 'Hello']
+      messages: [{ id: '0', body: 'Hi' }, { id: '1', body: 'Hello' }]
     }
   }
 
   render() {
     const messages: JSX.Element[] = []
     this.state.messages.forEach(element => {
-      messages.push(<div>{element}</div>)
+      messages.push(<div key={element.id}>{element.body}</div>)
     })
 
     return messages
