@@ -114,7 +114,20 @@ export class BoardMessage extends React.Component<
   render() {
     return (
       <div>
-        <input id={this.inputId} type="text" />
+        <input
+          id={this.inputId}
+          type="text"
+          onKeyDown={event => {
+            if (event.keyCode !== 13) {
+              return
+            }
+            const value = this.extractMessage()
+            if (value === '') {
+              return
+            }
+            this.props.onClick(value)
+          }}
+        />
         <button onClick={() => this.props.onClick(this.extractMessage())}>
           button
         </button>
