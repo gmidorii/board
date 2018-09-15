@@ -121,6 +121,13 @@ export class BoardMessage extends React.Component<
     return elm.value
   }
 
+  clearInput(): void {
+    const elm: HTMLInputElement = document.getElementById(
+      this.inputId
+    ) as HTMLInputElement
+    elm.value = ''
+  }
+
   render() {
     return (
       <div>
@@ -136,15 +143,25 @@ export class BoardMessage extends React.Component<
               return
             }
             this.props.onClick(value)
+            this.clearInput()
           }}
         />
         <button
           id={this.submitId}
-          onClick={() => this.props.onClick(this.extractMessage())}
+          onClick={() => {
+            this.props.onClick(this.extractMessage())
+            this.clearInput()
+          }}
         >
           submit
         </button>
-        <button id={this.clearId} onClick={() => this.props.onClear()}>
+        <button
+          id={this.clearId}
+          onClick={() => {
+            this.props.onClear()
+            this.clearInput()
+          }}
+        >
           clear
         </button>
       </div>
