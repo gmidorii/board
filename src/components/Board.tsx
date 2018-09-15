@@ -29,6 +29,12 @@ export class Board extends React.Component<BoardProps, BoardState> {
     })
   }
 
+  clearMessage() {
+    this.setState({
+      messages: []
+    })
+  }
+
   render() {
     return (
       <div className="board">
@@ -41,6 +47,7 @@ export class Board extends React.Component<BoardProps, BoardState> {
         <div className="body-message">
           <BoardMessage
             onClick={(message: string) => this.handleMessage(message)}
+            onClear={() => this.clearMessage()}
           />
         </div>
       </div>
@@ -91,6 +98,7 @@ export class BoardBody extends React.Component<BoardBodyProps, BoardBodyState> {
 
 export interface BoardMessageProps {
   onClick(message: string): void
+  onClear(): void
 }
 export interface BoardMessageState {}
 
@@ -129,8 +137,9 @@ export class BoardMessage extends React.Component<
           }}
         />
         <button onClick={() => this.props.onClick(this.extractMessage())}>
-          button
+          submit
         </button>
+        <button onClick={() => this.props.onClear()}>clear</button>
       </div>
     )
   }
