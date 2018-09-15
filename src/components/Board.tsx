@@ -15,7 +15,16 @@ export class Board extends React.Component<BoardProps, BoardState> {
   }
 
   render() {
-    return <BoardHeader title={this.state.boardTitle} />
+    return (
+      <div className="board">
+        <div className="board-header">
+          <BoardHeader title={this.state.boardTitle} />
+        </div>
+        <div className="board-body">
+          <BoardBody />
+        </div>
+      </div>
+    )
   }
 }
 
@@ -37,5 +46,28 @@ export class BoardHeader extends React.Component<
 
   render() {
     return <div>{this.props.title}</div>
+  }
+}
+
+export interface BoardBodyProps {}
+export interface BoardBodyState {
+  messages: string[]
+}
+
+export class BoardBody extends React.Component<BoardBodyProps, BoardBodyState> {
+  constructor(props: BoardBodyProps) {
+    super(props)
+    this.state = {
+      messages: ['Hi', 'Hello']
+    }
+  }
+
+  render() {
+    const messages: JSX.Element[] = []
+    this.state.messages.forEach(element => {
+      messages.push(<div>{element}</div>)
+    })
+
+    return messages
   }
 }
