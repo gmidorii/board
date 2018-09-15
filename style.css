@@ -1,0 +1,21 @@
+#root{
+  text-align: center
+}
+
+.board{
+  display: inline-block;
+  text-align: left;
+  width: 70%;
+}
+
+.board-header {
+
+}
+
+.board-body {
+
+}
+
+.board-message {
+
+}
