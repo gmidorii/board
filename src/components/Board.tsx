@@ -94,7 +94,7 @@ export class BoardBody extends React.Component<BoardBodyProps, BoardBodyState> {
         <div key={element.id} className="message">
           <div>Date: {element.createdAt.toLocaleString()}</div>
           <div>
-            Body
+            Body:
             <br />
             {element.body}
           </div>
