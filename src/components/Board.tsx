@@ -20,13 +20,13 @@ export class Board extends React.Component<BoardProps, BoardState> {
   handleMessage(message: string) {
     const current = this.state.messages.slice()
     this.setState({
-      messages: current.concat([
+      messages: [
         {
           id: String(current.length),
           body: message,
           createdAt: new Date()
         }
-      ])
+      ].concat(current)
     })
   }
 
@@ -119,6 +119,7 @@ export class BoardMessage extends React.Component<
   private inputId = 'messageInput'
   private submitId = 'messageSubmit'
   private clearId = 'messageClear'
+  private messagePlaceHolder = 'Ctrl + Enter => submit'
 
   constructor(props: BoardMessageProps) {
     super(props)
@@ -138,24 +139,30 @@ export class BoardMessage extends React.Component<
     elm.value = ''
   }
 
+  isCtrlorMetaEnter(event: React.KeyboardEvent<HTMLTextAreaElement>): boolean {
+    return event.keyCode !== 13 || (!event.metaKey && !event.ctrlKey)
+  }
+
   render() {
     return (
       <div>
-        <input
-          id={this.inputId}
-          type="text"
-          onKeyDown={event => {
-            if (event.keyCode !== 13) {
-              return
-            }
-            const value = this.extractMessage()
-            if (value === '') {
-              return
-            }
-            this.props.onClick(value)
-            this.clearInput()
-          }}
-        />
+        <div>
+          <textarea
+            id={this.inputId}
+            placeholder={this.messagePlaceHolder}
+            onKeyDown={event => {
+              if (this.isCtrlorMetaEnter(event)) {
+                return
+              }
+              const value = this.extractMessage()
+              if (value === '') {
+                return
+              }
+              this.props.onClick(value)
+              this.clearInput()
+            }}
+          />
+        </div>
         <button
           id={this.submitId}
           onClick={() => {
