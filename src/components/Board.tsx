@@ -42,14 +42,14 @@ export class Board extends React.Component<BoardProps, BoardState> {
         <div className="board-header">
           <BoardHeader title={this.state.boardTitle} />
         </div>
-        <div className="board-body">
-          <BoardBody messages={this.state.messages} />
-        </div>
         <div className="body-message">
           <BoardMessage
             onClick={(message: string) => this.handleMessage(message)}
             onClear={() => this.clearMessage()}
           />
+        </div>
+        <div className="board-body">
+          <BoardBody messages={this.state.messages} />
         </div>
       </div>
     )

@@ -13,7 +13,8 @@
 }
 
 .board-body {
-
+  overflow-y: scroll;
+  height: 500px;
 }
 
 .board-message {
@@ -23,6 +24,7 @@
 .message {
   padding: 10px 0;
   border: 1px solid #e2dcdc;
+  word-break : break-all;
 }
 
 #messageInput {
