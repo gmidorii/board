@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`message snapshort 1`] = `
+<div>
+  <div>
+    <textarea
+      id="messageInput"
+      onKeyDown={[Function]}
+      placeholder="Ctrl + Enter => submit"
+    />
+  </div>
+  <button
+    id="messageSubmit"
+    onClick={[Function]}
+  >
+    submit
+  </button>
+  <button
+    id="messageClear"
+    onClick={[Function]}
+  >
+    clear
+  </button>
+</div>
+`;

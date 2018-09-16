@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`body snapshot 1`] = `
+<div
+  className="message"
+>
+  <div>
+    Date: 
+    2018-9-16 15:00:00
+  </div>
+  <div>
+    Body:
+    <br />
+    body
+  </div>
+</div>
+`;
