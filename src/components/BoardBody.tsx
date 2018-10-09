@@ -16,12 +16,13 @@ export class BoardBody extends React.Component<Props, State> {
     this.props.messages.forEach(element => {
       messages.push(
         <div key={element.id} className="message">
-          <div>Date: {element.createdAt.toLocaleString()}</div>
           <div>
-            Body:
-            <br />
-            {element.body}
+            <span>{element.user}</span>
+            <span className="message-date">
+              {element.createdAt.toLocaleString()}
+            </span>
           </div>
+          <div>{element.body}</div>
         </div>
       )
     })

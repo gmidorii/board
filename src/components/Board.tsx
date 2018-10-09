@@ -26,6 +26,7 @@ export class Board extends React.Component<Props, State> {
       messages: [
         {
           id: String(current.length),
+          user: 'John Doe',
           body: message,
           createdAt: new Date()
         }
