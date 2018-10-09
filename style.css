@@ -27,6 +27,12 @@
   padding: 10px 0;
   border: 1px solid #e2dcdc;
   word-break : break-all;
+  position: relative;
+}
+
+.message-date{
+  position: absolute;
+  right: 0;
 }
 
 #messageInput {
